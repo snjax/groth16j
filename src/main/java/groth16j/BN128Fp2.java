@@ -22,7 +22,8 @@ import java.math.BigInteger;
 import static groth16j.Params.B_Fp2;
 
 /**
- * Definition of {@link BN128} over F_p2, where "p" equals {@link Params#P} <br/>
+ * Definition of {@link BN128} over F_p2, where "p" equals {@link Params#P}
+ * <br/>
  *
  * Curve equation: <br/>
  * Y^2 = X^3 + b, where "b" equals {@link Params#B_Fp2} <br/>
@@ -64,9 +65,9 @@ public class BN128Fp2 extends BN128<Fp2> {
     }
 
     /**
-     * Checks whether provided data are coordinates of a point on the curve,
-     * then checks if this point is a member of subgroup of order "r"
-     * and if checks have been passed it returns a point, otherwise returns null
+     * Checks whether provided data are coordinates of a point on the curve, then
+     * checks if this point is a member of subgroup of order "r" and if checks have
+     * been passed it returns a point, otherwise returns null
      */
     public static BN128<Fp2> create(byte[] aa, byte[] bb, byte[] cc, byte[] dd) {
 

@@ -5,9 +5,20 @@ package groth16j;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.Base64;
 
 public class VerifierTest {
-    @Test public void testEmptyVerifier() {
-        assertFalse("verifier with empty parameters should return 'false'", Verifier.verify(new byte[0], new byte[0], new byte[0]));
+
+    public static byte[] b64decode(String data) {
+        return Base64.getDecoder().decode(data.getBytes());
+    }
+
+    @Test
+    public void testEmptyVerifier() {
+        String vk = "L6bNoQF7E5Hun46AwObA3rTiq0IJwgGoRv/ZJeeKZ5AY6QtPJDxjcYZWfu+X5CvP4/Tt3wMuEOcHtWLHrSYFxyzL/Pil2zI3ny8u/P7RrqVEate9yfukNDS9kOETgVssJq4jY7h1PMS9j01cGdO9a/3loe+frI5uNFPMyd18TW4IkUaodJXL2t9sGtSTyjYOOLZUMNtIXsIxuD76hTqZFRsdvsZsTj9XL4ZYWZL/quzmrxIJFcl2PJBGifk2kBpRDStINTUNaVXhkJL9Ey0DFwr/3U5xYEZjFvRANoXlbB4FU2Ew+EIq61USmD95LaupQ4MHnplxXVbOr2qdrvX+AyXaw9BLvV2/k7+z8yqBldDXBcRqB7kikhAEMDJ6Z91AG/Mhv2HcqqxPRoeEOFamzN9owKxu4Oy0SAEbKNaJ1ugSfL8V1LTuXSlwPgnLVSxvPv1QmbPqicPoiJ2++vfGrxpRzFtB/WwNnoRti0+nATVhRCIE928bY//YlkV/YFZhB55xQSsANucfvvZW79AUp8Qi7DO2/DvUgZoaCcij2WwZQl8N40cQS1I3cFeqZ8h/QmBc/BM20Y/+PQLnM7b3RAsUmA7yIbNFx9gxpilce/9TMY9GUyvd7cZGMU6hI5mfLevhQuG69WH/3znUQcUAwFZWENOUXB9Irqn7eoAHTcYTdzQLdnf24zPbP/UX48cVl1KYg/9SsJTLDHm1lKG05B/mqzfXlgfQwRfILUR40U4dL/nHfpUC8sdtacc5vL43";
+        String proof = "FE/tn5hYgC97hG66O4v80DJYkMtJVO322XqNIC/o3JEbmDoEz4p+m8PibldJi+Jmja6vHErHz2JM8hv9HhfnwwG7+UrXx4jKftue7s2ZGgfh08pNwvirFvyeW3niYBZoIsPouBzzyguxsftNEnd2BYcUkv4zqrLqvCRiqzWKNQYvH7C15PSyI7gVbGXmSvVOOxKMkJLMKAUie9kWfs+I/A+H0ERPRHe8o10yR8VGKj4K+SdIYvKwEKMkHtZ15lkYClInVZk8s8RqQZ7Dm9QY3GtaVkKv0NYIfjUH3FHeVUkPHfDmrKY0XS0pDXLma3JryxGRiJ5+n9CuJbwc4785JA==";
+        String inputs = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABs=";
+        assertTrue("verifier should return 'true'",
+                Verifier.verify(b64decode(vk), b64decode(proof), b64decode(inputs)));
     }
 }
