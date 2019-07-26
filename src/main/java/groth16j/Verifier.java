@@ -98,9 +98,11 @@ public class Verifier {
 
     int ilen = _input.length / 32;
     BigInteger[] input = new BigInteger[ilen];
-    for (int i = 0; i < ilen; i++)
+    for (int i = 0; i < ilen; i++) {
       input[i] = bytesToBigInteger(parseWord(_input, i));
-
+      if ((input[i].signum()==-1) || (input[i].subtract(Params.R).signum()!= -1))
+        return false;    
+    }
     return verify(vk, proof, input);
   }
 }
